@@ -2,5 +2,5 @@
 - include_tasks: prepare_environment.yml
 - include_tasks: init_chain.yml
 - include_tasks: rpc_config.yml
-#- include_tasks: download_extract_snapshot.yml
+- include_tasks: download_extract_snapshot.yml
 - include_tasks: define_enable_service.yml
