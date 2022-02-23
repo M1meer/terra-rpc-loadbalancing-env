@@ -1,0 +1,38 @@
+---
+all:
+  children:
+    haproxies:
+      hosts:
+        haproxy1:
+          ansible_host: '{{ haproxy_IP }}'
+    
+    prometheus_servers:
+      hosts:
+        prometheus_server1:
+          ansible_host: '{{ prometheus_server_IP }}'
+
+    prometheus_node_exporters:
+      hosts:
+        prometheus_node_exporter1:
+          ansible_host: '{{ full_node_IPs[0] }}'
+        prometheus_node_exporter2:
+          ansible_host: '{{ full_node_IPs[1] }}'
+        prometheus_node_exporter3:
+          ansible_host: '{{ full_node_IPs[2] }}'
+        prometheus_node_exporter4:
+          ansible_host: '{{ haproxy_IP }}'
+
+
+    grafana_servers:
+      hosts:
+        grafana_server1:
+          ansible_host: '{{ grafana_IP }}'
+
+    terra_nodes:
+      hosts:
+        full_node1:
+          ansible_host: '{{ full_node_IPs[0] }}'
+        full_node2:
+          ansible_host: '{{ full_node_IPs[1] }}'
+        full_node3:
+          ansible_host: '{{ full_node_IPs[2] }}'

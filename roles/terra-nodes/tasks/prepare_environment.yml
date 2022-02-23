@@ -1,0 +1,95 @@
+- name: update and install packages
+  apt:
+    update_cache: true
+    state: latest
+    pkg:
+    - make
+    - gcc
+    - acl
+    - libhidapi-dev
+    - g++
+    - build-essential
+    - git
+    - python
+    - wget
+    - liblz4-tool
+    - aria2
+    - jq
+
+- name: Update .profile
+  blockinfile:
+    path: /home/{{ terra_username }}/.profile
+    owner: "{{ terra_username }}"
+    group: "{{ terra_username }}"
+    create: yes
+    mode: "644"
+    block: |
+      GOPATH="$HOME/go"
+      PATH="$GOPATH/bin:$PATH"
+      PATH="$PATH:/usr/local/go/bin"
+
+- name: Get files from github
+  git:
+    repo: "https://github.com/{{ repository }}"
+    dest: "/home/{{ terra_username }}/go/src/github.com/{{ repository }}"
+    version: "{{ version }}"
+    force: yes
+  become: yes
+  become_user: "{{ terra_username }}"
+
+- name: Create GOBIN directory if it does not exist
+  file:
+    path: "/home/{{ terra_username }}/go/bin"
+    owner: "{{ terra_username }}"
+    group: "{{ terra_username }}"
+    state: directory
+    mode: '0775'
+
+- name: Delete go install dir before unpacking
+  file:
+    path: "/usr/local/go"
+    state: absent
+
+- name: Download Go
+  get_url:
+    url: "{{ go_url }}"
+    dest: "/root"
+  register: dl_go
+  become: yes
+  become_user: root
+
+- name: Extract Go
+  unarchive:
+    src: "{{ dl_go.dest }}"
+    remote_src: yes
+    dest: /usr/local/
+  become: yes
+  become_user: root
+
+- name: Install dep
+  shell: "source /home/{{ terra_username }}/.profile && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh"
+  args:
+    creates: "/home/{{ terra_username }}/go/bin/dep"
+    executable: /bin/bash
+    chdir: "/home/{{ terra_username }}/"
+    warn: no
+  become: yes
+  become_user: "{{ terra_username }}"
+
+- name: Populate service facts
+  service_facts:
+
+- name: stop service if exists
+  systemd:
+    name: "{{ service }}"
+    state: stopped
+  when: service_full in ansible_facts.services
+
+- name: Make install
+  shell: "source /home/{{ terra_username }}/.profile && make install"
+  args:
+    executable: /bin/bash
+    chdir: "/home/{{ terra_username }}/go/src/github.com/{{ repository }}"
+    warn: no
+  become: yes
+  become_user: "{{ terra_username }}"

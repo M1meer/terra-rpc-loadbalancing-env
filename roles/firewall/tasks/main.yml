@@ -1,0 +1,9 @@
+---
+- include_tasks: node_hosts.yml
+  when: inventory_hostname in groups['terra_nodes']
+- include_tasks: grafana.yml
+  when: inventory_hostname in groups['grafana_servers']
+- include_tasks: load_balancer.yml
+  when: inventory_hostname in groups['haproxies']
+- include_tasks: prometheus_server.yml
+  when: inventory_hostname in groups['prometheus_servers']

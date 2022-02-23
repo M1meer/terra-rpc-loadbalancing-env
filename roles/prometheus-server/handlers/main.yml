@@ -1,0 +1,5 @@
+- name: restart_prometheus_server
+  service:
+    name: "{{ server_service }}"
+    state: restarted
+    enabled: true

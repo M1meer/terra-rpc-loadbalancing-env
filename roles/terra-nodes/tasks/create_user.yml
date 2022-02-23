@@ -1,0 +1,4 @@
+- name: Add user "{{ terra_username }}"
+  user:
+    name: "{{ terra_username }}"
+    shell: /bin/bash
