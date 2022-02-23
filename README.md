@@ -18,7 +18,7 @@ This collection of playbooks provides a starting point for building a load-balan
 
 
 ## Getting started
-Target machine IPs are defined in ```group_vars/all.yml```, and these variables are re-used throughout the playbook. As such, define your targets with the relevant public and private IPs. You also need to make sure that the targets are able to communicate locally, be that by existing in the same VPC and subnet, or using e.g. VPC peering. If you want them to communicate on public addresses in all instances, private IP variables need to be replaced with their public-IP counterparts (```group_vars/all.yml```) in all relevant places, or alternatively, by giving the ```_local``` variables the same values as their public counterparts in ```group_vars/all.yml```
+Target machine IPs are defined in ```group_vars/all.yml```, and these variables are re-used throughout the playbook. As such, define your targets with the relevant public and private IPs. You also need to make sure that the targets are able to communicate locally, be that by existing in the same VPC and subnet, or using e.g. VPC peering. If you want them to communicate on public addresses in all instances, private IP variables need to be replaced with their public-IP counterparts (```group_vars/all.yml```) in all relevant places, or alternatively, by giving the ```_local``` variables the same values as their public counterparts in ```group_vars/all.yml```.
 
 
 
@@ -34,10 +34,10 @@ To configure monitoring, access your grafana server on port :3000 and start buil
 By default, ansible runs against the public IP:22 to deploy. If you are running from a VPN or a local host, change the inventory.yml targets' variables to their ```_local``` counterparts.
 
 ### Disk space needed
-You need harddisk space to store the download, as well as the unpacked chain. Check the snapshot size, consider that it needs to be unpacked, and configure your resources accordingly
+You need harddisk space to store the download, as well as the unpacked chain. Check the snapshot size, consider that it needs to be unpacked, and configure your resources accordingly.
 
 ### Idempotency
-The terra-nodes role will include the downloading and unpacking of the snapshot. Running it again will download the entire quicksync file once more, and there is not recommended. These tasks can be disabled by commenting out ```- include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file
+The terra-nodes role will include the downloading and unpacking of the snapshot. Running it again will download the entire quicksync file once more, and there is not recommended. These tasks can be disabled by commenting out  ```- include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
 
 
 ## Docs
