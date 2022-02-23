@@ -25,7 +25,7 @@ Target machine IPs are defined in ```group_vars/all.yml```, and these variables 
 ## Usage
 Scripts are provided to run each role against a pre-set host group target, based on the diagram below. These can be changed based on need. Hosts and groups are defined in ```inventory.yml```, pulling addressing information from ```group_vars/all.yml```
 
-To configure monitoring, access your grafana server on port :3000 and start building dashboards. Nodes will have two endpoints: 9100 for general metrics, and :26660 for blockchain data. HAProxy will have :9100 accessible.
+To configure monitoring, access your grafana server on port :3000 and start building dashboards. Prometheus-server will be populated with endpoinds to scrape, so all that remains is the selection of metrics. Terra nodes will have two endpoints: 9100 for general metrics, and :26660 for blockchain data. HAProxy will have :9100 accessible.
 
 ## Sample environment
 ![sample environment](./topology.svg)
@@ -37,7 +37,7 @@ By default, ansible runs against the public IP:22 to deploy. If you are running 
 You need harddisk space to store the download, as well as the unpacked chain. Check the snapshot size, consider that it needs to be unpacked, and configure your resources accordingly.
 
 ### Idempotency
-The terra-nodes role will include the downloading and unpacking of the snapshot. Running it again will download the entire quicksync file once more, and there is not recommended. These tasks can be disabled by commenting out ``` - include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
+The terra-nodes role will include the downloading and unpacking of the snapshot. Running it again will download the entire quicksync file once more, and is not recommended. The tasks involved in the downloading and extraction of the snapshot can be disabled by commenting out ``` - include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
 
 
 ## Docs
