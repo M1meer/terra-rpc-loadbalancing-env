@@ -32,7 +32,7 @@ By default, ansible runs against the public IP:22 to deploy. If you are running 
 
 ## Sample environment
 ![sample environment](./topologyDiagram.svg)
-<img src="./topologyDiagram.svg">
+
 ## Docs
 Terra documentation: https://docs.terra.money/docs/full-node/run-a-full-terra-node/README.html
 
