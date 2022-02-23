@@ -27,6 +27,9 @@ Scripts are provided to run each role against a pre-set host group target, based
 
 To configure monitoring, access your grafana server on port :3000 and start building dashboards. Nodes will have two endpoints: 9100 for general metrics, and :26660 for blockchain data. HAProxy will have :9100 accessible.
 
+## Sample environment
+![sample environment](./topology.svg)
+
 ## Caveats
 By default, ansible runs against the public IP:22 to deploy. If you are running from a VPN or a local host, change the inventory.yml targets' variables to their ```_local``` counterparts.
 
@@ -36,8 +39,6 @@ You need harddisk space to store the download, as well as the unpacked chain. Ch
 ### Idempotency
 The terra-nodes role will include the downloading and unpacking of the snapshot. Running it again will download the entire quicksync file once more, and there is not recommended. These tasks can be disabled by commenting out ```- include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file
 
-## Sample environment
-![sample environment](./topology.svg)
 
 ## Docs
 Terra documentation: https://docs.terra.money/docs/full-node/run-a-full-terra-node/README.html
