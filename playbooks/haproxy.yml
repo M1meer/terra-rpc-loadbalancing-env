@@ -1,4 +1,0 @@
----
-- hosts: haproxies
-  roles:
-    - { role: ../roles/haproxy, become: yes }

@@ -1,3 +1,0 @@
----
-- include_tasks: create_prometheus_user.yml
-- include_tasks: setup_prometheus_server.yml

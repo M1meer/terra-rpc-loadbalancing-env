@@ -1,3 +1,0 @@
----
-- include_tasks: create_grafana_user.yml
-- include_tasks: install_grafana.yml

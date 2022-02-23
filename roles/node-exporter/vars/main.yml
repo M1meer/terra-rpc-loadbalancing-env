@@ -1,7 +1,0 @@
-prometheus_user: 'prometheus'
-prometheus_server_name: 'prometheus'
-
-exporter_binary: 'prometheus-node_exporter'
-exporter_binary_dest: '/usr/bin/prometheus_node_exporter'
-exporter_service: 'prometheus-node-exporter.service'
-exporter_service_dest: '/etc/systemd/system/prometheus-node-exporter.service'

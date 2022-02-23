@@ -1,4 +1,0 @@
----
-- hosts: prometheus_servers
-  roles:
-    - { role: ../roles/prometheus-server, become: yes }

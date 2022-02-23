@@ -1,4 +1,0 @@
----
-- hosts: terra_nodes
-  roles:
-    - { role: ../roles/terra-nodes, become: yes }

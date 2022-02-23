@@ -1,6 +1,0 @@
-terra_nodes_dict:
-    'terra_node1': '{{ full_node_IPs_local[0] }}'
-    'terra_node2': '{{ full_node_IPs_local[1] }}'
-    'terra_node3': '{{ full_node_IPs_local[2] }}'
-
-haproxy_user: haproxy
