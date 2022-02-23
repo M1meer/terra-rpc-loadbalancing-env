@@ -1,0 +1,5 @@
+---
+- name: Ensure that the prometheus user exists
+  user:
+    name: "{{ prometheus_user }}"
+    shell: /bin/false

@@ -1,0 +1,20 @@
+---
+- name: update and install packages
+  apt:
+    update_cache: true
+    state: latest
+    pkg:
+      - acl
+      - haproxy
+
+- name: place haproxy config
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: enable and start haproxy
+  systemd:
+    name: haproxy
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

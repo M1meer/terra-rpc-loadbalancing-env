@@ -1,0 +1,62 @@
+---
+- name: Enable ufw
+  ufw:
+    state: enabled
+    # policy: deny
+
+- name: Set logging
+  ufw:
+    logging: on
+
+- name: limit SSH connection attempts
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Allow RPC ports from load balancer
+  ufw:
+    rule: allow
+    proto: tcp
+    interface: eth0
+    direction: in
+    src: "{{ haproxy_IP_local }}"
+    port: 26657,1317,9090
+
+- name: Allow scraping by Prometheus server
+  ufw:
+    rule: allow
+    proto: tcp
+    interface: eth0
+    direction: in
+    src: "{{ prometheus_server_IP_local }}"
+    port: 9100,26660
+
+- name: Allow SSH from internet
+  ufw:
+    rule: allow
+    proto: tcp
+    direction: in
+    interface: eth0
+    src: 0.0.0.0/0
+    port: 22
+  when: allow_public_ssh == "yes"
+
+- name: update policy to block
+  ufw:
+    direction: incoming
+    policy: deny
+
+# due to some "feature" this is necessary for ufw to load on reboot
+- name: tell OS to load ufw after the netfilter-persistent
+  lineinfile:
+    path: "/lib/systemd/system/ufw.service"
+    insertafter: '^Before=network.target'
+    line: 'After=netfilter-persistent.service'
+
+- name: enable ufw on startup
+  systemd:
+    name: ufw
+    state: started
+    daemon_reload: yes
+    enabled: yes

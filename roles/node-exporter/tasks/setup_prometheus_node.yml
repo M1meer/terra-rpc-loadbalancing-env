@@ -1,0 +1,18 @@
+---
+- name: copy the binary to {{ exporter_binary_dest }}
+  copy:
+    src: "{{ exporter_binary }}"
+    dest: "{{ exporter_binary_dest }}"
+    mode: 0755
+
+- name: put systemd service file in place
+  copy:
+    src: "{{ exporter_service }}"
+    dest: "{{ exporter_service_dest }}"
+
+- name: update systemd and restart exporter systemd
+  systemd:
+    daemon-reload: true
+    enabled: true
+    state: restarted
+    name: "{{ exporter_service }}"

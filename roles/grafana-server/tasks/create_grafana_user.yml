@@ -1,0 +1,6 @@
+---
+- name: Ensure that the grafana user exists
+  user:
+    name: "{{ grafana_username }}"
+    # shell: /bin/false
+    shell: /bin/bash

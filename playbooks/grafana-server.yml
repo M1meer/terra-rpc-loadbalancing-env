@@ -1,0 +1,4 @@
+---
+- hosts: grafana_servers
+  roles:
+    - { role: ../roles/grafana-server, become: yes }

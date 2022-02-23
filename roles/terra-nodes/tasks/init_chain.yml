@@ -1,0 +1,30 @@
+- name: Init chain
+  shell: "source /home/{{ terra_username }}/.profile && {{ service_executable }} init {{ moniker }} --chain-id {{ chain_id }}"
+  args:
+    creates: "{{ service_homedir }}/config/genesis.json"
+    executable: /bin/bash
+    chdir: "/home/{{ terra_username }}/"
+    warn: no
+  become: yes
+  become_user: "{{ terra_username }}"
+
+- name: Delete Genesis
+  file:
+    path: "{{ service_homedir }}/config/genesis.json"
+    state: 'absent'
+
+- name: Download Genesis
+  get_url:
+    url: "{{ genesis }}"
+    owner: "{{ terra_username }}"
+    group: "{{ terra_username }}"
+    dest: "{{ service_homedir }}/config/genesis.json"
+    mode: '0640'
+
+- name: Download Addressbook
+  get_url:
+    url: "{{ addressbook }}"
+    owner: "{{ terra_username }}"
+    group: "{{ terra_username }}"
+    dest: "{{ service_homedir }}/config/addrbook.json"
+    mode: '0640'
