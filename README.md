@@ -31,7 +31,7 @@ Scripts are provided to run each role against pre-set host group targets based o
 By default, ansible runs against the public IP:22 to deploy. If you are running from a VPN or a local host, change the inventory.yml targets' variables to their ```_local``` counterparts.
 
 ## Sample environment
-![sample environment](./topologyDiagram.svg)
+![sample environment](./topology.svg)
 
 ## Docs
 Terra documentation: https://docs.terra.money/docs/full-node/run-a-full-terra-node/README.html
