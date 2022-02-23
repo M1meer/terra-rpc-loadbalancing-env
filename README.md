@@ -24,7 +24,7 @@ Target machine IPs are defined in ```group_vars/all.yml```, and these variables 
 
 ## Usage
 
-Scripts are provided to run each role against pre-set host group targets based on the diagram here. These can be changed based on need. Hosts and groups are defined in ```inventory.yml```, pulling addressing information from ```group_vars/all.yml```
+Scripts are provided to run each role against a pre-set host group target, based on the diagram below. These can be changed based on need. Hosts and groups are defined in ```inventory.yml```, pulling addressing information from ```group_vars/all.yml```
 
 
 ## Caveats
