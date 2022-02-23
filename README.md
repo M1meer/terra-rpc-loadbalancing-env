@@ -37,7 +37,7 @@ By default, ansible runs against the public IP:22 to deploy. If you are running 
 You need harddisk space to store the download, as well as the unpacked chain. Check the snapshot size, consider that it needs to be unpacked, and configure your resources accordingly.
 
 ### Idempotency
-Ansible is Idempotent, and these playbooks should be so too. The terra-nodes role however will include the downloading and unpacking of the snapshot, and running this task again will download the entire quicksync file once more, and is not recommended due to time and resource use. The tasks involved in that process -- the downloading and extraction of the snapshot -- can be disabled by commenting out ``` - include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
+Ansible is Idempotent, and these playbooks should be so too. The terra-nodes role however includes the downloading and unpacking of the quicksync snapshot. Running this task several times over will download the entire quicksync file every time, and is not recommended due to time and resource use. The tasks involved in that process -- the downloading and extraction of the snapshot -- can be disabled by commenting out ``` - include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
 
 
 ## Docs
