@@ -15,6 +15,9 @@ This collection of playbooks provides a starting point for building a load-balan
 	- Deploys full terra nodes, opens RPC endpoints
 - firewall
 	- Deploys ```allow``` rules with ```deny``` policy
+	
+
+The ```terra-nodes``` role relies on the [quicksync snapshot](https://quicksync.io/networks/terra.html)
 
 
 ## Getting started
