@@ -40,8 +40,8 @@ You need sufficient harddisk space to store the download, as well as the unpacke
 ### Quicksync download
 The terra-nodes role includes the downloading and unpacking of the quicksync snapshot. Running this task several times over will download the entire quicksync file every time, and is not recommended due to time and resource use. The tasks involved in that process -- the downloading and extraction of the snapshot -- can be disabled by commenting out ``` - include_tasks: download_extract_snapshot.yml``` in the ```roles/terra-nodes/tasks/main.yml``` file.
 
-### number of hosts, limitations
-For now, this project assumes three RPC hosts. If less or more are needed, changes need to be made to the ```/roles/haproxy/vars/main.yml``` host list to account for the different number of hosts.
+### Limitations on the number of hosts
+For now, this project assumes three RPC hosts. If less or more are needed, changes need to be made to the ```/roles/haproxy/vars/main.yml``` host list, among possible other locations, to account for the different number of hosts.
 
 ## Docs
 Terra documentation: https://docs.terra.money/docs/full-node/run-a-full-terra-node/README.html
