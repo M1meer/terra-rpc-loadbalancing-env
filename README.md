@@ -12,12 +12,10 @@ This collection of playbooks provides a starting point for building a load-balan
 - prometheus-server
 	- Deploys a prometheus server, and populates prometheus.yml with scraping endpoints based on host: port defined in ```vars/main.yml```
 - terra-nodes
-	- Deploys full terra nodes, opens RPC endpoints
+	- Deploys full terra nodes, opens RPC endpoints. Relies on [the quicksync Terra chain snapshot](https://quicksync.io/networks/terra.html)
+
 - firewall
 	- Deploys ```allow``` rules with ```deny``` policy
-	
-
-The ```terra-nodes``` role relies on the [quicksync snapshot](https://quicksync.io/networks/terra.html)
 
 
 ## Getting started
