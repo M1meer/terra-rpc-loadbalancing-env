@@ -24,7 +24,7 @@ Target machine IPs are defined in ```group_vars/all.yml```, and these variables 
 
 
 ## Usage
-Scripts are provided to run each role against a pre-set host group target, based on the diagram below. These can be changed based on need. Hosts and groups are defined in ```inventory.yml```, pulling addressing information from ```group_vars/all.yml```. Also, make sure to define the terra version, the [latest quicksync filename](https://quicksync.io/networks/terra.html), and other variables in roles/terra-nodes/vars/main.yml
+Scripts are provided to run each role against a pre-set host group target, based on the diagram below. These can be changed based on need. Hosts and groups are defined in ```inventory.yml```, pulling addressing information from ```group_vars/all.yml```. Also, make sure to define the terra version, the [latest quicksync filename](https://quicksync.io/networks/terra.html), and other variables in ```roles/terra-nodes/vars/main.yml```
 
 To configure monitoring, access your grafana server on port :3000 and start building dashboards. Prometheus-server will be populated with endpoinds to scrape, so all that remains is the selection of metrics. Terra nodes will have two endpoints: 9100 for general metrics, and :26660 for blockchain data. HAProxy will have :9100 accessible.
 
